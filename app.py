@@ -76,8 +76,9 @@ def tobs():
     """Return a list of temperature observations for the previous year"""
     start = dt.date(2017,8,23)
     year_ago = start - dt.timedelta(days=365)
-    results = session.query(Measurement.date,Measurement.tobs).filter((Measurement.date >= year_ago)).all()
-                # filter((Measurement.station == 'USC00519281')).all()
+    results = session.query(Measurement.date,Measurement.tobs).\
+                filter((Measurement.station == 'USC00519281')).\
+                filter((Measurement.date >= year_ago)).all()
 
     temperature_data = []
     for date, tobs in results:
